@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "536220072045",
+    "project_id": "kissmisschatting-9b6a9",
+    "storage_bucket": "kissmisschatting-9b6a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536220072045:android:c2dea1ea6558f6ae74a764",
+        "android_client_info": {
+          "package_name": "com.example.kissmisschatting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536220072045-gcsb1pdmmaf63gdun2o1f8426nrlqu13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAQ2cXK9qTXXbDUtUMml8AWx1GDoyppR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536220072045-gcsb1pdmmaf63gdun2o1f8426nrlqu13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
