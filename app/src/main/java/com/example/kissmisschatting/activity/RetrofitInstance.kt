@@ -1,6 +1,6 @@
 package com.example.kissmisschatting.activity
 
-import com.example.kissmisschatting.activity.Constants.Constants
+import com.example.kissmisschatting.activity.constants.Constants
 import com.example.kissmisschatting.activity.`interface`.NotificationApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

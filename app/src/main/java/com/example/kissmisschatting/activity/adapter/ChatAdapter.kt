@@ -1,6 +1,7 @@
 package com.example.kissmisschatting.activity.adapter
 
 import android.content.Context
+import android.content.Intent.getIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ChatAdapter(private val context: Context, private val chatList: ArrayList<Chat>) :
+
+class ChatAdapter(private val context: Context, private val chatList: ArrayList<Chat>, private val gender: String?) :
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     private val MESSAGE_TYPE_LEFT = 0
@@ -40,7 +42,13 @@ class ChatAdapter(private val context: Context, private val chatList: ArrayList<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chat = chatList[position]
         holder.txtUserName.text = chat.message
-        //Glide.with(context).load(user.profileImage).placeholder(R.drawable.profile_image).into(holder.imgUser)
+
+            if (gender == "Male"){
+                Glide.with(context).load(R.drawable.men).placeholder(R.drawable.profile_image).into(holder.imgUser)
+            }
+            else{
+                Glide.with(context).load(R.drawable.female).placeholder(R.drawable.profile_image).into(holder.imgUser)
+        }
 
     }
 

@@ -1,7 +1,7 @@
 package com.example.kissmisschatting.activity.`interface`
 
-import com.example.kissmisschatting.activity.Constants.Constants.Companion.CONTENT_TYPE
-import com.example.kissmisschatting.activity.Constants.Constants.Companion.SERVER_KEY
+import com.example.kissmisschatting.activity.constants.Constants.Companion.CONTENT_TYPE
+import com.example.kissmisschatting.activity.constants.Constants.Companion.SERVER_KEY
 import com.example.kissmisschatting.activity.model.PushNotification
 import okhttp3.ResponseBody
 import retrofit2.Response

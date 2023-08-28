@@ -8,12 +8,14 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.kissmisschatting.R
 import com.example.kissmisschatting.activity.UsersActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import java.lang.Exception
 import kotlin.random.Random
 
 class FirebaseService: FirebaseMessagingService() {
@@ -48,7 +50,8 @@ class FirebaseService: FirebaseMessagingService() {
         }
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = PendingIntent.getActivity(this,0,intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
         val notification = NotificationCompat.Builder(this,CHANNEL_ID)
             .setContentTitle(p0.data["title"])
             .setContentText(p0.data["message"])
@@ -59,6 +62,7 @@ class FirebaseService: FirebaseMessagingService() {
 
         notificationManager.notify(notificationId,notification)
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel(notificationManager: NotificationManager){

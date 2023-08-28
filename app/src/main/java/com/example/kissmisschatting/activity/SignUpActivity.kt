@@ -3,6 +3,7 @@ package com.example.kissmisschatting.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kissmisschatting.databinding.ActivitySignUpBinding
@@ -30,26 +31,49 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             val confirmPassword = binding.etConfirmPassword.text.toString()
+            var strGender: String? = null
+
+            if (binding.radioGroup.getCheckedRadioButtonId() == -1) {
+                strGender = null
+                Toast.makeText(applicationContext,"Gender is required", Toast.LENGTH_SHORT).show()
+            } else {
+                if (binding.male.isChecked()) {     // one of the radio buttons is checked
+                    strGender = "Male"
+                } else if (binding.female.isChecked()) {
+                    strGender = "Female"
+                } else {
+                    strGender = "3"
+                }
+            }
+
 
             if (TextUtils.isEmpty(userName)){
                 Toast.makeText(applicationContext,"username is required", Toast.LENGTH_SHORT).show()
             }
-            if (TextUtils.isEmpty(email)){
+            else if (TextUtils.isEmpty(email)){
                 Toast.makeText(applicationContext,"email is required", Toast.LENGTH_SHORT).show()
             }
 
-            if (TextUtils.isEmpty(password)){
+            else if (TextUtils.isEmpty(password)){
                 Toast.makeText(applicationContext,"password is required", Toast.LENGTH_SHORT).show()
             }
 
-            if (TextUtils.isEmpty(confirmPassword)){
+            else if (TextUtils.isEmpty(confirmPassword)){
                 Toast.makeText(applicationContext,"confirm password is required", Toast.LENGTH_SHORT).show()
             }
 
-            if (!password.equals(confirmPassword)){
+            else if (!password.equals(confirmPassword)){
                 Toast.makeText(applicationContext,"password not match", Toast.LENGTH_SHORT).show()
             }
-            registerUser(userName,email,password)
+            else {
+                if (binding.radioGroup.getCheckedRadioButtonId() == -1) {
+                    strGender = null
+                    Toast.makeText(applicationContext,"Gender is required", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    registerUser(userName, email, password,strGender!!)
+                }
+            }
 
         }
 
@@ -61,7 +85,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun registerUser(userName:String,email:String,password:String){
+    private fun registerUser(userName:String,email:String,password:String,strGender:String){
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){
                 if (it.isSuccessful){
@@ -74,6 +98,7 @@ class SignUpActivity : AppCompatActivity() {
                     hashMap.put("userId",userId)
                     hashMap.put("userName",userName)
                     hashMap.put("profileImage","")
+                    hashMap.put("gender",strGender)
 
                     databaseReference.setValue(hashMap).addOnCompleteListener(this){
                         if (it.isSuccessful){

@@ -30,13 +30,20 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList[position]
         holder.txtUserName.text = user.userName
-        Glide.with(context).load(user.profileImage).placeholder(R.drawable.profile_image)
-            .into(holder.imgUser)
+        holder.txtTemp.text = user.gender
+        if (user.gender == "Male"){
+            Glide.with(context).load(R.drawable.men).placeholder(R.drawable.profile_image)
+                .into(holder.imgUser)
+        }else{
+            Glide.with(context).load(R.drawable.female).placeholder(R.drawable.profile_image)
+                .into(holder.imgUser)
+        }
 
         holder.layoutUser.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("userId", user.userId)
             intent.putExtra("userName", user.userName)
+            intent.putExtra("gender", user.gender)
             context.startActivity(intent)
         }
     }

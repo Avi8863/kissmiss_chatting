@@ -24,8 +24,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import java.util.ArrayList
+
 
 class ChatActivity : AppCompatActivity() {
 
@@ -43,6 +42,7 @@ class ChatActivity : AppCompatActivity() {
 
         binding.chatRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        (binding.chatRecyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
 
 
         val intent = getIntent()
@@ -132,10 +132,11 @@ class ChatActivity : AppCompatActivity() {
                         chatList.add(chat)
                     }
                 }
-
-                val chatAdapter = ChatAdapter(this@ChatActivity, chatList)
+                val gender = intent.getStringExtra("gender")
+                val chatAdapter = ChatAdapter(this@ChatActivity, chatList,gender)
 
                 binding.chatRecyclerView.adapter = chatAdapter
+                binding.chatRecyclerView.smoothScrollToPosition( binding.chatRecyclerView.adapter!!.itemCount)
             }
         })
     }
