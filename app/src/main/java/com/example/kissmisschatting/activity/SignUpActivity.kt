@@ -3,7 +3,6 @@ package com.example.kissmisschatting.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kissmisschatting.databinding.ActivitySignUpBinding
@@ -72,6 +71,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 else{
                     registerUser(userName, email, password,strGender!!)
+                    intent.putExtra("currentUserName", userName)
                 }
             }
 
@@ -122,6 +122,11 @@ class SignUpActivity : AppCompatActivity() {
             }
             .addOnFailureListener(this){
                 println(it.message)
+                Toast.makeText(
+                    applicationContext,
+                    it.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 }

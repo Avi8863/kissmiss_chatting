@@ -36,6 +36,8 @@ class UsersActivity : AppCompatActivity() {
         binding = ActivityUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
             FirebaseService.token = it.token
@@ -87,7 +89,6 @@ class UsersActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
                 val currentUser = snapshot.getValue(User::class.java)
-                currentUser?.userName
                 if (currentUser!!.profileImage == "") {
                     binding.imgProfile.setImageResource(com.example.kissmisschatting.R.drawable.profile_image)
                 } else {
@@ -97,6 +98,7 @@ class UsersActivity : AppCompatActivity() {
 
                 for (dataSnapShot: DataSnapshot in snapshot.children) {
                     val user = dataSnapShot.getValue(User::class.java)
+                    user!!.userName
 
                     if (!user!!.userId.equals(firebase.uid)) {
 

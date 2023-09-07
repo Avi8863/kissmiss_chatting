@@ -87,8 +87,10 @@ class ChatActivity : AppCompatActivity() {
                 sendMessage(firebaseUser!!.uid, userId, message)
                 binding.etMessage.setText("")
                 topic = "/topics/$userId"
+                //get the current intent
+                //get the current intent
                 PushNotification(
-                    NotificationData(userName!!, message),
+                    NotificationData(userName.toString(), message),
                     topic
                 ).also {
                     sendNotification(it)
